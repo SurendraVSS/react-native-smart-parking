@@ -7,6 +7,7 @@ import Login from './src/screens/Login';
 import Register from './src/screens/Register';
 import Home from './src/screens/Home';
 import Payment from './src/screens/Payment';
+import StripeApp from './src/screens/StripeApp';
 
 const Routes = () => {
     const authscheck = useContext(UserContext);
@@ -21,7 +22,7 @@ const Routes = () => {
                         headerShown: false
                     }}>
                         <Stack.Screen name="Home" component={Home} />
-                        <Stack.Screen name="Payment" component={Payment} />
+                        <Stack.Screen name="Payment" component={StripeApp} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </> : <>

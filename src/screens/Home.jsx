@@ -10,7 +10,7 @@ import {
 } from 'firebase/database';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Card from "../components/Card"
-const Home = () => {
+const Home = ({navigation}) => {
     const [ledData, setLedData] = useState();
     useEffect(() => {
         return onValue(ref(db), querySnapShot => {
@@ -26,7 +26,7 @@ const Home = () => {
                 <Card style={styles.card}>
                     <Text style={styles.sectionTitle}>Parking Slot 1</Text>
                         {ledData?.value == 0 ? <View style={{ backgroundColor: 'blue', marginTop: 30, borderRadius: 20 }}>
-                            <Button style={styles.sectionTitleBtn} title="Book Paking Slot" color="#fff"></Button>
+                            <Button style={styles.sectionTitleBtn} title="Book Paking Slot" color="#fff" onPress={() => navigation.navigate('Payment')}></Button>
                         </View> : <Text style={styles.sectionTitle}>Slot Booked</Text>}
                 </Card>
 
