@@ -8,6 +8,7 @@ import Register from './src/screens/Register';
 import Home from './src/screens/Home';
 import Payment from './src/screens/Payment';
 import StripeApp from './src/screens/StripeApp';
+import HmnReg from './src/screens/HmnReg';
 
 const Routes = () => {
     const authscheck = useContext(UserContext);
@@ -30,6 +31,7 @@ const Routes = () => {
                     <Stack.Navigator screenOptions={{
                         headerShown: false
                     }}>
+                        <Stack.Screen name="HmnReg" component={HmnReg} />
                         <Stack.Screen name="Register" component={Register} />
                         <Stack.Screen name="Login" component={Login} />
                     </Stack.Navigator>

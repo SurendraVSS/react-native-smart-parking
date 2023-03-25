@@ -23,7 +23,7 @@ const Login = ({navigation}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     function handleLogin() {
-        axios.post('http://localhost:3009/api/login', {
+        axios.post('http://54.199.251.177:3009/api/login', {
             "email": email,
             "password": password
         })
@@ -55,7 +55,7 @@ const Login = ({navigation}) => {
                     marginTop: SIZES.padding * 6,
                     paddingHorizontal: SIZES.padding *3
                 }}
-                onPress={() => navigation.navigate('Register')}
+                onPress={() => navigation.navigate('HmnReg')}
             >
                 <Image
                     source={icons.back}

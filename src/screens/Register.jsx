@@ -22,7 +22,7 @@ const Register = ({navigation}) => {
     const [password, setPassword] = useState("");
     function handleLogin() {
         
-        axios.post('http://localhost:3009/api/register', {
+        axios.post('http://54.199.251.177:3009/api/register', {
             "name": name,
             "address": address,
             "email": email,
@@ -52,7 +52,7 @@ const Register = ({navigation}) => {
                     marginTop: SIZES.padding * 6,
                     paddingHorizontal: SIZES.padding * 3
                 }}
-                onPress={() => navigation.navigate("Login")}
+                onPress={() => navigation.navigate("HmnReg")}
             >
                 <Image
                     source={icons.back}

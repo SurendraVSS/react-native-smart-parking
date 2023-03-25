@@ -10,12 +10,14 @@ import {
 } from 'firebase/database';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Card from "../components/Card"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Home = ({navigation}) => {
     const [ledData, setLedData] = useState();
     useEffect(() => {
+        //AsyncStorage.clear()
         return onValue(ref(db), querySnapShot => {
             let data = querySnapShot.val() || {};
-           
+           //AsyncStorage.clear()
             setLedData(data);
         });
     }, []);
@@ -35,7 +37,7 @@ const Home = ({navigation}) => {
                   
 
                         {ledData?.value2 == 0 ? <View style={{ backgroundColor: 'blue', marginTop: 30, borderRadius: 20 }}>
-                            <Button style={styles.sectionTitleBtn} title="Book Paking Slot" color="#fff"></Button>
+                            <Button style={styles.sectionTitleBtn} title="Book Paking Slot" color="#fff" onPress={() => navigation.navigate('Payment')}></Button>
                         </View> : <Text style={styles.sectionTitleSlot}>Slot Booked</Text>}
                 </Card>
 
@@ -43,7 +45,7 @@ const Home = ({navigation}) => {
                         <Text style={styles.sectionTitle}>Parking Slot 3</Text>
 
                         {ledData?.value3 == 0 ? <View style={{ backgroundColor: 'blue', marginTop: 30, borderRadius: 20 }}>
-                            <Button style={styles.sectionTitleBtn} title="Book Paking Slot" color="#fff"></Button>
+                            <Button style={styles.sectionTitleBtn} title="Book Paking Slot" color="#fff" onPress={() => navigation.navigate('Payment')}></Button>
                         </View> : <Text style={styles.sectionTitle}>Slot Booked</Text>}
                 </Card>
 
@@ -51,7 +53,7 @@ const Home = ({navigation}) => {
                         <Text style={styles.sectionTitle}>Parking Slot 4</Text>
 
                         {ledData?.value4 == 0 ? <View style={{ backgroundColor: 'blue', marginTop: 30, borderRadius: 20 }}>
-                            <Button style={styles.sectionTitleBtn} title="Book Paking Slot" color="#fff"></Button>
+                            <Button style={styles.sectionTitleBtn} title="Book Paking Slot" color="#fff" onPress={() => navigation.navigate('Payment')}></Button>
                         </View> : <Text style={styles.sectionTitle}>Slot Booked</Text>}
                 </Card>
 
@@ -59,13 +61,13 @@ const Home = ({navigation}) => {
                         <Text style={styles.sectionTitle}>Parking Slot 5</Text>
                    
                         {ledData?.value5 == 0 ? <View style={{ backgroundColor: 'blue', marginTop: 30, borderRadius: 20 }}>
-                            <Button style={styles.sectionTitleBtn} title="Book Paking Slot" color="#fff"></Button>
+                            <Button style={styles.sectionTitleBtn} title="Book Paking Slot" color="#fff" onPress={() => navigation.navigate('Payment')}></Button>
                         </View> : <Text style={styles.sectionTitle}>Slot Booked</Text>}
                 </Card>
                     <Card style={styles.card}>
                         <Text style={styles.sectionTitle}>Parking Slot 6</Text>
                         {ledData?.value6 == 0 ? <View style={{backgroundColor:'blue',marginTop:30,borderRadius:20}}>
-                            <Button style={styles.sectionTitleBtn} title="Book Paking Slot" color="#fff"></Button> 
+                            <Button style={styles.sectionTitleBtn} title="Book Paking Slot" color="#fff" onPress={() => navigation.navigate('Payment')}></Button> 
                         </View>: <Text style={styles.sectionTitle}>Slot Booked</Text>}
                         
                     </Card>
