@@ -44,8 +44,8 @@ const HmnReg = ({navigation}) => {
                     <Text style={{ color: 'white', fontSize: 20 }}>Register</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{ backgroundColor: 'black', width: 250, height: 60, borderRadius: 20,justifyContent:'center',alignItems:'center',marginTop:20 }}>
-                    <Text style={{ color: 'white', fontSize: 20 }} onPress={() => navigation.navigate('Login')}>Login</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Login')} style={{ backgroundColor: 'black', width: 250, height: 60, borderRadius: 20,justifyContent:'center',alignItems:'center',marginTop:20 }}>
+                    <Text style={{ color: 'white', fontSize: 20 }}>Login</Text>
                 </TouchableOpacity>
             </View>
         </View>

@@ -17,13 +17,18 @@ import { COLORS, SIZES, icons, images } from "../constants"
 import axios from "axios"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { UserContext } from "../../context"
+import PopUP from '../components/PopUP';
+
 const Login = ({navigation}) => {
     const authscheck = useContext(UserContext);
+    const [showAnimation, setShowAnimation] = useState(false);
+    const [showAnimationSus, setShowAnimationSus] = useState(false);
+
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     function handleLogin() {
-        axios.post('http://54.199.251.177:3009/api/login', {
+        axios.post('http://43.207.189.44:3009/api/login', {
             "email": email,
             "password": password
         })
@@ -32,18 +37,24 @@ const Login = ({navigation}) => {
                     await AsyncStorage.setItem('user', JSON.stringify(response.data))
                     await AsyncStorage.setItem('isAuth', JSON.stringify(true))
                     await authscheck.setAuth(true)
+                    setShowAnimationSus(true)
                 }
                 if (response.status == 200) {
                     navigation.navigate('Home')
                 }
             })
             .catch(function (error) {
-                Alert.alert("Please try again registration failed")
+                //Alert.alert("Please try again registration failed")
+                setShowAnimation(true)
             }).then((response) => {
                
                 setEmail("")
                 setPassword("")
-        
+                setTimeout(() => {
+                    setShowAnimation(false)
+                    setShowAnimationSus(false)
+                }, 5000);
+               
             })
     }
     function renderHeader() {
@@ -57,6 +68,8 @@ const Login = ({navigation}) => {
                 }}
                 onPress={() => navigation.navigate('HmnReg')}
             >
+            
+          
                 <Image
                     source={icons.back}
                     resizeMode="contain"
@@ -211,12 +224,21 @@ const Login = ({navigation}) => {
                 {renderLogo()}
                 {renderForm()}
                 {renderButton()}
+                {showAnimation ? <PopUP style={styles.popup} err="Please try again Login failed" /> : <></>}
 
+                {showAnimationSus ? <PopUP style={styles.popup} err="Login Success" /> : <></>}
             </LinearGradient>
         </KeyboardAvoidingView>
     );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    popup:{
+        justifyContent:'center',
+        alignItems: 'center',
+        flex:1,
+        marginLeft:20   
+    }
+})
 
 export default Login;

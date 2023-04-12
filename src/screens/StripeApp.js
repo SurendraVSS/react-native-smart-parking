@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
+import { View, Text, StyleSheet, TextInput, Button, Alert, Image, ScrollView } from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
+import { COLORS, SIZES, icons, images } from "../constants";
 
 //ADD localhost address of your server
-const API_URL = "http://localhost:3009";
+const API_URL = "http://43.207.189.44:3009";
 
 const StripeApp = props => {
     const [email, setEmail] = useState();
@@ -55,7 +56,35 @@ const StripeApp = props => {
     };
 
     return (
+        <ScrollView>
+
+       
         <View style={styles.container}>
+        <View>
+                    <Text style={{ fontSize: 20, textAlign: 'center', margin: 20 }}>Parking spot for per Day is only Rs 80/-</Text>
+        </View>
+
+            <View>
+                <Text style={{fontSize:20,textAlign:'center',margin:20}}>Pay Via scanner</Text>
+            </View>
+
+                <View style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+}}>
+                <Image
+                    source={images.payment}
+                    style={{
+                        width: "80%",
+justifyContent:'center',
+alignItems: 'center',
+                        resizeMode: 'contain',
+                        borderRadius: 10,
+                        marginBottom:30
+                    }}
+                />
+            </View>
+                <View><Text style={{ fontSize: 20, textAlign: 'center', margin: 20 }}>Pay Via Card</Text></View>
             <TextInput
                 autoCapitalize="none"
                 placeholder="E-mail"
@@ -76,6 +105,7 @@ const StripeApp = props => {
             />
             <Button onPress={handlePayPress} title="Pay" disabled={loading} />
         </View>
+        </ScrollView>
     );
 };
 export default StripeApp;
@@ -83,7 +113,7 @@ export default StripeApp;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
+        marginTop:50,
         margin: 20,
     },
     input: {

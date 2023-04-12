@@ -14,15 +14,18 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { COLORS, SIZES, icons, images } from "../constants";
+import PopUP from '../components/PopUP';
 import axios from "axios"
 const Register = ({navigation}) => {
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showAnimation, setShowAnimation] = useState(false);
+    const [showAnimationSus, setShowAnimationSus] = useState(false);
     function handleLogin() {
         
-        axios.post('http://54.199.251.177:3009/api/register', {
+        axios.post('http://43.207.189.44:3009/api/register', {
             "name": name,
             "address": address,
             "email": email,
@@ -30,16 +33,22 @@ const Register = ({navigation}) => {
         })
             .then(function (response) {
                 if (response.status === 201) {
-                    navigation.navigate('Login')    
+                    setShowAnimationSus(true)
+                    navigation.navigate('Login')   
+                    
                 }
             })
             .catch(function (error) {
-                Alert.alert("Please try again registration failed")
+                setShowAnimation(true) 
             }).then(()=>{
                 setName("")
                 setAddress("")
                 setEmail("")
                 setPassword("")
+                setTimeout(() => {
+                    setShowAnimationSus(false)
+                    setShowAnimation(false)
+                }, 5000);
             })
     }
     const [showPassword, setShowPassword] = useState(false);
@@ -246,6 +255,8 @@ const Register = ({navigation}) => {
                     {renderLogo()}
                     {renderForm()}
                     {renderButton()}
+                    {showAnimation ? <PopUP style={styles.popup} err="Please try again registration failed" /> : <></>}
+                    {showAnimationSus ? <PopUP style={styles.popup} err="Registration Success" /> : <></>}
                 </ScrollView>
               
 
