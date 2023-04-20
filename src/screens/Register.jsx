@@ -23,13 +23,16 @@ const Register = ({navigation}) => {
     const [password, setPassword] = useState("");
     const [showAnimation, setShowAnimation] = useState(false);
     const [showAnimationSus, setShowAnimationSus] = useState(false);
+    const [vehicle, setVehicle] = useState("");
+
     function handleLogin() {
         
-        axios.post('http://43.207.189.44:3009/api/register', {
+        axios.post('https://smartpaarkingbackendiot.onrender.com/api/register', {
             "name": name,
             "address": address,
             "email": email,
-            "password": password
+            "password": password,
+            "vehicle": vehicle,
         })
             .then(function (response) {
                 if (response.status === 201) {
@@ -153,6 +156,29 @@ const Register = ({navigation}) => {
                         selectionColor={COLORS.white}
                         onChangeText={(e) => setAddress(e)}
                         value={address}
+                    />
+                </View>
+
+                <View
+                    style={{ marginTop: SIZES.padding }}
+                >
+                    <Text
+                        style={{ color: COLORS.lightGreen }}
+                    >Vehicle Number</Text>
+                    <TextInput
+                        style={{
+                            marginVertical: SIZES.padding,
+                            borderBottomColor: COLORS.white,
+                            borderBottomWidth: 1,
+                            height: 40,
+                            color: COLORS.white,
+
+                        }}
+                        placeholder="Enter Vehicle Number "
+                        placeholderTextColor={COLORS.white}
+                        selectionColor={COLORS.white}
+                        onChangeText={(e) => setVehicle(e)}
+                        value={vehicle}
                     />
                 </View>
 

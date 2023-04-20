@@ -28,7 +28,7 @@ const Login = ({navigation}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     function handleLogin() {
-        axios.post('http://43.207.189.44:3009/api/login', {
+        axios.post('https://smartpaarkingbackendiot.onrender.com/api/login', {
             "email": email,
             "password": password
         })
